@@ -14,8 +14,9 @@ To run the app, `cd` to the project directory and use the following:
 [x] - Add explanation
 [ ] - Add explanation of math behind it
 [x] - Add tab functionality (tab for explanation and demo, tab for comparison)
-[ ] - Fix colour palette
-[ ] - Add a templated Summary section containing relevant findings (time-to-double, end/start, sum of accrued gains, number of years until overtake)
+[x] - Fix colour palette
+[x] - Add a templated Summary section containing relevant findings (time-to-double, end/start, sum of accrued gains, number of years until overtake)
+[x] - Add header
 
 ## Deployment
 [ ] - Deploy on `Heroku`
