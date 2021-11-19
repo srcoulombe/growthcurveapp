@@ -18,6 +18,7 @@ To run the app, `cd` to the project directory and use the following:
 [x] - Add a templated Summary section containing relevant findings (time-to-double, end/start, sum of accrued gains, number of years until overtake)
 [x] - Add header
 [ ] - Add to documentation in notebook
+[ ] - Fix css (blargh)
 
 ## Deployment
 [x] - Deploy on `Heroku`
