@@ -19,6 +19,9 @@ To run the app, `cd` to the project directory and use the following:
 [x] - Add header
 [ ] - Add to documentation in notebook
 [ ] - Fix css (blargh)
+[ ] - Separate the Explanation tab into "Explanation" and "About"
+[ ] - Move business case to the "About" tab
+[ ] - Add image of what Wealthsimple has to the "About" tab
 
 ## Deployment
 [x] - Deploy on `Heroku`
