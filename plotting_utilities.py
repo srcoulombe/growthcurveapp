@@ -5,6 +5,9 @@ from bokeh.models import HoverTool
 from bokeh.plotting import figure
 from bokeh.palettes import brewer
 
+import panel as pn
+pn.extension()
+
 # local dependencies
 from calculation_utilities import calc, find_points_of_interest
 
@@ -116,3 +119,34 @@ def plot_curve(    starting_capital: float,
             df.total.values[-1], \
             df.accrued_gains.values[-1], \
             overtaking_points_df.years_elapsed.values[0] if overtaking_points_df.shape[0] > 0 else None
+
+def plot_curve_with_highlights( starting_capital: float,
+                                contribution_per_compounding_period: float,
+                                compounding_periods_per_year: int = 1, 
+                                real_return_rate: float = 0.05,
+                                num_years: int = 10):
+    p, \
+    years_to_first_doubling, \
+    total, \
+    total_accrued_gains, \
+    years_to_overtaking = plot_curve(    
+        starting_capital,
+        contribution_per_compounding_period,
+        compounding_periods_per_year = compounding_periods_per_year,
+        real_return_rate = real_return_rate,
+        num_years = num_years,
+    )
+    summary = f"""## Summary
+___
+In this scenario:
+
+* you would have grown your starting capital **~{round(total/starting_capital, 1)}x**.
+* you would have approximately **${round(total, 2)}** after {num_years} years.
+* your accrued gains would total to roughly **${round(total_accrued_gains, 2)}**.
+"""
+    if years_to_first_doubling:
+        summary += f"* **your starting capital doubled** for the first time **after {round(years_to_first_doubling)} years**."
+    if years_to_overtaking:
+        summary += f"\n* the **gains realized through your {real_return_rate} real return rate** would have **surpassed your ${contribution_per_compounding_period} contributions** after **{round(years_to_overtaking)} years**."
+
+    return pn.Column(p, summary)
