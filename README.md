@@ -6,7 +6,7 @@ Inspired by Wealthsimple's curve plots.
 
 To run the app, `cd` to the project directory and use the following:
 
-`$ panel serve Compounded_Growth_Curve.ipynb --autoreload`
+`$ panel serve wealthsimpleplus.ipynb --autoreload`
 
 # TODO
 ## Development
@@ -22,6 +22,14 @@ To run the app, `cd` to the project directory and use the following:
 [ ] - Separate the Explanation tab into "Explanation" and "About"
 [ ] - Move business case to the "About" tab
 [ ] - Add image of what Wealthsimple has to the "About" tab
+[ ] - Add a Purchasing-Power aspect
+    Basically a plot showing how much $# now would be worth in Y years
+        Could actually show this for multiple Ys:
+        ^
+        |  /
+        | / /
+        |/ / /
+        +----->
 
 ## Deployment
 [x] - Deploy on `Heroku`
