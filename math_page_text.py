@@ -20,12 +20,18 @@ The Real Return Rate per Compounding Period (RR) is a decimal number calculated 
 
 Let's presume that the Compounding Periods per Year = 1. That means that the Interest Rate per Compounding Period (IR) is simply the average annual inflation rate you're expecting for the duration of the forecasting. In Canada for instance, the IR has hovered around ~2-3% since 1991[^1]. 
 
-Let's also presume that we've invested our savings in a very diversified portfolio. Empirical evidence from recent years suggest that the average annual return rate for these portfolios over 20+ years is between 4-7%[^2].
+Let's also presume that we've invested our savings in a very diversified portfolio. Community wisdom accrued from recent years suggests that a reasonable average annual return rate for these portfolios over 20+ years would be between 4-10%.
 
-This 4-7% (let's split the difference and call it 5.5% to make things simpler) would be the Nominal Return Rate per Compounding Period (NR). The 2-3% (again, let's just call it 2.5%) would be the Interest Rate per Compounding Period (IR). So under these assumptions, the Real Return Rate per Compounding Period (RR) would be 
-***= 0.055 - 0.025 = 0.03***.
+This 4-7% (let's split the difference and call it 5.5% to make things simpler) would be the Nominal Return Rate per Compounding Period (NR). The 2-3% (again, let's just call it 2.5%) would be the Interest Rate per Compounding Period (IR). 
+
+So under these assumptions, the Real Return Rate per Compounding Period (RR) would be: 
+
+>***RR = NR - IR***
+
+>***RR = 0.055 - 0.025***
+
+>***RR = 0.03***
 
 [^1]: source: https://www.statista.com/statistics/271247/inflation-rate-in-canada/
-[^2]: source: ...
 """
 

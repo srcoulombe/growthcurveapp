@@ -1,5 +1,8 @@
 # plotting_utilities.py
 
+# standard library dependencies
+from typing import Tuple
+
 # external dependencies
 from bokeh.models import HoverTool
 from bokeh.plotting import figure
@@ -15,8 +18,42 @@ def plot_curve(    starting_capital: float,
                    contribution_per_compounding_period: float,
                    compounding_periods_per_year: int = 1, 
                    real_return_rate: float = 0.05,
-                   num_years: int = 10):
+                   num_years: int = 10) -> Tuple[figure,int,float,float,int]:
+    """Utility function that handles plotting the compound growth curve
+    from the specified parameters and returning the values to include
+    in the highlight/milestones section (see `plot_curve_with_highlights`).
 
+    Parameters
+    ----------
+    starting_capital : float
+        Amount of money on year 0.
+    contribution_per_compounding_period : float
+        Contibutes made to the account per compounding period.
+    compounding_periods_per_year : int, optional
+        Number of compounding periods per 12-month cycle, by default 1.
+    real_return_rate : float, optional
+        Expected Real Return Rate, by default 0.05.
+    num_years : int, optional
+        Number of years to include in the forecast, by default 10
+
+    Returns
+    -------
+    Tuple[figure,int,float,float,int]
+        Tuple comprised of the following items:
+        * p : bokeh.plotting.figure
+            The compounding growth curve
+        * int
+            Integer indicating the number of years it would take to double
+            the starting capital
+        * float
+            The total amount in the savings account after the specified
+            number of years (according to the parameters)
+        * float
+            The sum of gains accrued from compound interest
+        * int
+            The number of years after which the gains from compounding interest
+            exceeds the period contributions.
+    """
     df = calc(
         starting_capital,
         contribution_per_compounding_period,
@@ -124,7 +161,31 @@ def plot_curve_with_highlights( starting_capital: float,
                                 contribution_per_compounding_period: float,
                                 compounding_periods_per_year: int = 1, 
                                 real_return_rate: float = 0.05,
-                                num_years: int = 10):
+                                num_years: int = 10) -> pn.Column:
+    """
+    Wrapper around `plot_curve` to generate the growth curve plot and the
+    personalized summary/milestones to go with it.
+
+    Parameters
+    ----------
+    starting_capital : float
+        Amount of money on year 0.
+    contribution_per_compounding_period : float
+        Contibutes made to the account per compounding period.
+    compounding_periods_per_year : int, optional
+        Number of compounding periods per 12-month cycle, by default 1.
+    real_return_rate : float, optional
+        Expected Real Return Rate, by default 0.05.
+    num_years : int, optional
+        Number of years to include in the forecast, by default 10
+
+    Returns
+    -------
+    pn.Column
+        Panel Column object containing the growth curve plot and the personalized
+        summary/milestones text.
+    """
+
     p, \
     years_to_first_doubling, \
     total, \
@@ -140,13 +201,13 @@ def plot_curve_with_highlights( starting_capital: float,
 ___
 In this scenario:
 
-* you would have grown your starting capital **~{round(total/starting_capital, 1)}x**.
-* you would have approximately **${round(total, 2)}** after {num_years} years.
-* your accrued gains would total to roughly **${round(total_accrued_gains, 2)}**.
+* you would have grown your starting capital **~{round(total/starting_capital, 1):,}x**.
+* you would have approximately **${round(total, 2):,}** after {num_years} years.
+* your accrued gains would total to roughly **${round(total_accrued_gains, 2):,}**.
 """
     if years_to_first_doubling:
-        summary += f"* **your starting capital doubled** for the first time **after {round(years_to_first_doubling)} years**."
+        summary += f"* **your starting capital doubled** for the first time **after {round(years_to_first_doubling):,} years**."
     if years_to_overtaking:
-        summary += f"\n* the **gains realized through your {real_return_rate} real return rate** would have **surpassed your ${contribution_per_compounding_period} contributions** after **{round(years_to_overtaking)} years**."
+        summary += f"\n* the **gains realized through your {real_return_rate} real return rate** would have **surpassed your ${contribution_per_compounding_period:,} contributions** after **{round(years_to_overtaking):,} years**."
 
     return pn.Column(p, summary)
