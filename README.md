@@ -4,6 +4,8 @@ growth of a portfolio subject to periodic contributions.
 
 Inspired by Wealthsimple's curve plots.
 
+The web app has been deployed on Heroku. [Check it out there!](https://compoundinggrowth.herokuapp.com/web_app_notebook)
+
 # Quickstart
 0. Clone this repo using: `git clone https://github.com/srcoulombe/growthcurveapp.git`
 1. Navigate into the repository's directory and create a virtual environment by using: `python3 -m venv compounding-growth-venv`
